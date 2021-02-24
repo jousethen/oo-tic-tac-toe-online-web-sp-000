@@ -138,7 +138,7 @@ class TicTacToe
     end
   end
   
-  def full?(
+  def full?
     is_full = @board.none? do |cell|
     
     if cell == " "
@@ -151,5 +151,49 @@ class TicTacToe
     return is_full
   end
 
-
+  def draw?
+   is_full = full?
+   is_won = won?
+   
+   if is_full == true && is_won == false
+     return true
+   else
+     return false
+   end
+  end
+  
+  def over?
+   is_full = full?
+   is_won = won?
+   is_draw = draw?
+   
+   if is_full || is_won || is_draw
+     return true
+   else
+     return false
+   end
+  end
+  
+  def winner
+   if (over? == false)
+     return nil
+   else
+     win_combo = won?
+     
+     all_x = win_combo.all? do |cell|
+          if @board[cell] == "X"
+            true
+          else
+            false
+          end
+      end 
+      
+      if all_x
+        return "X"
+      else
+        return "O"
+      end
+   end
+  end
+  
 end
